@@ -1,4 +1,4 @@
-package com.example.myexpenses.view
+package com.example.myexpenses.features.expenses.create.view
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle

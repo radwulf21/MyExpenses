@@ -3,5 +3,8 @@
     <string name="add_expense">Adicionar despesa</string>
     <string name="add_expense_title">Adicione uma despesa</string>
     <string name="label_description">Descrição</string>
-    <string name="value">Valor: R$</string>
+    <string name="value">Valor</string>
+    <string name="month_total">Total do mês</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
