@@ -5,10 +5,15 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
+import androidx.fragment.app.viewModels
 import com.example.myexpenses.databinding.FragmentExpensesBinding
+import com.example.myexpenses.MyExpensesRouter.Companion.launchAddExpense
 import com.example.myexpenses.features.expenses.list.adapter.ExpensesAdapter
+import com.example.myexpenses.features.expenses.list.viewmodel.ExpensesViewModel
 
 class ExpensesFragment : Fragment() {
+
+    private val viewModel: ExpensesViewModel by viewModels()
 
     private val mExpensesAdapter by lazy {
         ExpensesAdapter()
@@ -32,6 +37,11 @@ class ExpensesFragment : Fragment() {
 
     private fun setUpViews() {
         binding?.rvExpenses?.adapter = mExpensesAdapter
+        binding?.btnAddExpense?.setOnClickListener {
+            launchAddExpense(activity, monthId)
+        }
+
+
     }
 
     override fun onDestroyView() {

@@ -6,39 +6,13 @@
     android:layout_height="match_parent"
     tools:context=".features.expenses.list.view.ExpensesActivity">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/cl_header"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="16dp"
-        app:layout_constraintTop_toTopOf="parent">
-
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/month_total"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <TextView
-            android:id="@+id/tv_expense_value"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:text="R$ 500,00" />
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
     <com.google.android.material.tabs.TabLayout
         android:id="@+id/tb_months"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/cl_header"
+        app:layout_constraintTop_toTopOf="parent"
         app:tabMode="scrollable" />
 
     <androidx.viewpager2.widget.ViewPager2
@@ -47,17 +21,6 @@
         android:layout_height="0dp"
         android:focusable="true"
         android:importantForAccessibility="yes"
-        app:layout_constraintBottom_toTopOf="@id/btn_add_expense"
-        app:layout_constraintTop_toBottomOf="@id/tb_months" />
-
-    <Button
-        android:id="@+id/btn_add_expense"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="16dp"
-        android:layout_marginBottom="16dp"
-        android:text="@string/add_expense"
-        android:textAllCaps="false"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/vp_expenses" />
+        app:layout_constraintTop_toBottomOf="@id/tb_months" />
 </androidx.constraintlayout.widget.ConstraintLayout>

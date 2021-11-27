@@ -1,8 +1,13 @@
 package com.example.myexpenses.features.expenses.list.model
 
+import androidx.room.ColumnInfo
+import androidx.room.Entity
+import androidx.room.PrimaryKey
+
+@Entity(tableName = "expenses")
 data class Expense(
-    val id: Int,
-    val value: Double,
-    val description: String,
-    val monthId: Int
+    @PrimaryKey(autoGenerate = true) val id: Int,
+    @ColumnInfo(name = "value") val value: Double,
+    @ColumnInfo(name = "description") val description: String,
+    @ColumnInfo(name = "month_id") val monthId: Int
 )

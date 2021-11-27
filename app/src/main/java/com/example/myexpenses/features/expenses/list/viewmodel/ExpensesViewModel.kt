@@ -1,5 +1,7 @@
 package com.example.myexpenses.features.expenses.list.viewmodel
 
-class ExpensesViewModel {
+import androidx.lifecycle.ViewModel
+
+class ExpensesViewModel : ViewModel() {
 
 }

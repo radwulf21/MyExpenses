@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.FragmentActivity
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.myexpenses.databinding.ActivityExpensesBinding
-import com.example.myexpenses.features.expenses.MyExpensesRouter.Companion.launchAddExpense
 import com.example.myexpenses.features.expenses.list.model.MonthEnum
 import com.google.android.material.tabs.TabLayoutMediator
 
@@ -19,15 +18,10 @@ class ExpensesActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         setUpViews()
-
-        binding.btnAddExpense.setOnClickListener {
-            launchAddExpense(this)
-        }
     }
 
     private fun setUpViews() {
         binding.vpExpenses.adapter = FragmentExpensesAdapter(this)
-        binding.vpExpenses.isUserInputEnabled = false
 
         TabLayoutMediator(binding.tbMonths, binding.vpExpenses) { tab, position ->
             tab.text = MonthEnum.values()[position].value.name
