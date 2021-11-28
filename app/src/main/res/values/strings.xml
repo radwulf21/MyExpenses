@@ -5,6 +5,6 @@
     <string name="label_description">Descrição</string>
     <string name="value">Valor</string>
     <string name="month_total">Total do mês</string>
-    <!-- TODO: Remove or change this placeholder text -->
-    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="error_message_edit_text_blank">Preencha os campos!</string>
+    <string name="message_insert_successful">Despesa incluída com sucesso!</string>
 </resources>

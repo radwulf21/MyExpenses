@@ -12,18 +12,17 @@ abstract class MyExpensesDatabase : RoomDatabase() {
     abstract fun expenseDao(): MyExpensesDao
 
     companion object {
-        private var INSTANCE : MyExpensesDatabase? = null
+        @Volatile
+        private var instance: MyExpensesDatabase? = null
+        private val LOCK = Any()
 
-        fun getDatabase(context: Context): MyExpensesDatabase {
-            return INSTANCE ?: synchronized(this) {
-                val instance = Room.databaseBuilder(
-                    context.applicationContext,
-                    MyExpensesDatabase::class.java,
-                    "my_expenses.db"
-                ).build()
-                INSTANCE = instance
-                instance
-            }
+        operator fun invoke(context: Context) = instance ?: synchronized(LOCK) {
+            instance ?: buildDatabase(context).also { instance = it }
         }
+
+        private fun buildDatabase(context: Context) = Room.databaseBuilder(
+            context,
+            MyExpensesDatabase::class.java, "app_data_base.db"
+        ).build()
     }
 }

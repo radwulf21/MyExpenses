@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.myexpenses.databinding.ItemExpenseBinding
 import com.example.myexpenses.features.expenses.list.model.Expense
 
-class ExpensesAdapter() : RecyclerView.Adapter<ExpensesAdapter.ExpenseViewHolder>() {
+class ExpensesAdapter : RecyclerView.Adapter<ExpensesAdapter.ExpenseViewHolder>() {
 
     private val mExpenses: MutableList<Expense> = mutableListOf()
 

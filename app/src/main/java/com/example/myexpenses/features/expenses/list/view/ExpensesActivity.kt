@@ -22,6 +22,7 @@ class ExpensesActivity : AppCompatActivity() {
 
     private fun setUpViews() {
         binding.vpExpenses.adapter = FragmentExpensesAdapter(this)
+        binding.vpExpenses.isUserInputEnabled = false
 
         TabLayoutMediator(binding.tbMonths, binding.vpExpenses) { tab, position ->
             tab.text = MonthEnum.values()[position].value.name
