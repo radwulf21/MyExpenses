@@ -7,4 +7,12 @@
     <string name="month_total">Total do mês</string>
     <string name="error_message_edit_text_blank">Preencha os campos!</string>
     <string name="message_insert_successful">Despesa incluída com sucesso!</string>
+    <string name="text_currency_real">R$ %s</string>
+    <string name="empty_value">--.--</string>
+    <string name="dialog_delete_title">Deletar despesa</string>
+    <string name="dialog_delete_message">Deseja realmente deletar essa despesa?</string>
+    <string name="dialog_delete_positive_button_text">Deletar</string>
+    <string name="dialog_delete_negative_button_text">Cancelar</string>
+    <string name="message_delete_successful">Despesa deletada com sucesso!</string>
+    <string name="back">Voltar</string>
 </resources>

@@ -52,5 +52,13 @@
         android:layout_height="wrap_content"
         android:text="@string/add_expense"
         android:textAllCaps="false"
+        app:layout_constraintBottom_toTopOf="@id/btn_back" />
+
+    <Button
+        android:id="@+id/btn_back"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/back"
+        android:textAllCaps="false"
         app:layout_constraintBottom_toBottomOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

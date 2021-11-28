@@ -9,10 +9,25 @@ import kotlinx.coroutines.launch
 
 class ExpensesViewModel(private val repository: ExpensesRepository) : ViewModel() {
     val expenses = MutableLiveData<List<Expense>>()
+    val totalValue = MutableLiveData<Double>()
 
     fun loadExpensesByMonthId(monthId: Int) {
         viewModelScope.launch {
             expenses.value = repository.loadExpensesByMonthId(monthId)
+        }
+    }
+
+    fun getTotalValueOfMonth(monthId: Int) {
+        viewModelScope.launch {
+            totalValue.value = repository.getTotalValueOfMonth(monthId)
+        }
+    }
+
+    fun deleteExpense(expense: Expense, monthId: Int) {
+        viewModelScope.launch {
+            repository.deleteExpense(expense)
+            loadExpensesByMonthId(monthId)
+            getTotalValueOfMonth(monthId)
         }
     }
 }

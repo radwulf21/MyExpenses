@@ -1,5 +1,6 @@
 package com.example.myexpenses.features.expenses.list.view
 
+import android.content.DialogInterface
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,8 +12,13 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myexpenses.databinding.FragmentExpensesBinding
 import com.example.myexpenses.MyExpensesRouter.Companion.launchAddExpense
+import com.example.myexpenses.R
 import com.example.myexpenses.commons.database.MyExpensesApplication
+import com.example.myexpenses.commons.utils.UtilsMethods.Companion.buildAlertDialog
+import com.example.myexpenses.commons.utils.UtilsMethods.Companion.showToastMessage
 import com.example.myexpenses.features.expenses.list.adapter.ExpensesAdapter
+import com.example.myexpenses.features.expenses.list.adapter.ExpensesAdapterCallback
+import com.example.myexpenses.features.expenses.list.model.Expense
 import com.example.myexpenses.features.expenses.list.repository.ExpensesRepositoryImpl
 import com.example.myexpenses.features.expenses.list.viewmodel.ExpensesViewModel
 
@@ -28,7 +34,27 @@ class ExpensesFragment : Fragment() {
     }
 
     private val mExpensesAdapter by lazy {
-        ExpensesAdapter()
+        activity?.let { activity ->
+            ExpensesAdapter(activity, object : ExpensesAdapterCallback {
+                override fun onClickDeleteIcon(expense: Expense) {
+                    buildAlertDialog(
+                        activity,
+                        activity.getString(R.string.dialog_delete_title),
+                        activity.getString(R.string.dialog_delete_message),
+                        activity.getString(R.string.dialog_delete_positive_button_text),
+                        activity.getString(R.string.dialog_delete_negative_button_text),
+                        DialogInterface.OnClickListener { dialog, _ ->
+                            viewModel.deleteExpense(expense, expense.monthId)
+                            dialog.cancel()
+                            showToastMessage(activity, activity.getString(R.string.message_delete_successful))
+                        },
+                        DialogInterface.OnClickListener { dialog, _ ->
+                            dialog.cancel()
+                        }
+                    )
+                }
+            })
+        }
     }
 
     private var _binding: FragmentExpensesBinding? = null
@@ -41,23 +67,19 @@ class ExpensesFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         _binding = FragmentExpensesBinding.inflate(inflater, container, false)
+
+        setUpViews()
+
         return binding?.root
     }
 
     override fun onResume() {
         super.onResume()
 
-        setUpViews()
+        updateExpenses()
     }
 
     private fun setUpViews() {
-        activity?.let {
-            viewModel.loadExpensesByMonthId(monthId)
-            viewModel.expenses.observe(it) { expenses ->
-                mExpensesAdapter.addExpenseList(expenses as MutableList)
-            }
-        }
-
         binding?.rvExpenses?.apply {
             layoutManager = LinearLayoutManager(activity)
             adapter = mExpensesAdapter
@@ -65,6 +87,30 @@ class ExpensesFragment : Fragment() {
 
         binding?.btnAddExpense?.setOnClickListener {
             launchAddExpense(activity, monthId)
+        }
+    }
+
+    private fun updateExpenses() {
+        activity?.let { activity ->
+            viewModel.apply {
+                loadExpensesByMonthId(monthId)
+                expenses.observe(activity) { expenses ->
+                    mExpensesAdapter?.addExpenseList(expenses as MutableList)
+                }
+
+                getTotalValueOfMonth(monthId)
+                totalValue.observe(activity) { totalValue ->
+                    if (totalValue != null) {
+                        binding?.tvExpenseTotalValue?.text = activity.getString(
+                            R.string.text_currency_real, totalValue.toString()
+                        )
+                    } else {
+                        binding?.tvExpenseTotalValue?.text = activity.getString(
+                            R.string.empty_value
+                        )
+                    }
+                }
+            }
         }
     }
 

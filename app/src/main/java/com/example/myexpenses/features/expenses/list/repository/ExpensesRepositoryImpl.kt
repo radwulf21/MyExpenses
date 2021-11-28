@@ -7,4 +7,12 @@ class ExpensesRepositoryImpl(private val expensesDao: MyExpensesDao) : ExpensesR
     override suspend fun loadExpensesByMonthId(monthId: Int): List<Expense> {
         return expensesDao.loadExpensesByMonthId(monthId)
     }
+
+    override suspend fun deleteExpense(expense: Expense) {
+        expensesDao.deleteExpense(expense)
+    }
+
+    override suspend fun getTotalValueOfMonth(monthId: Int): Double {
+        return expensesDao.getTotalValueOfMonth(monthId)
+    }
 }

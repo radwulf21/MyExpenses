@@ -49,6 +49,10 @@ class AddExpenseActivity : AppCompatActivity() {
                 finish()
             }
         }
+
+        binding.btnBack.setOnClickListener {
+            finish()
+        }
     }
 
     private fun getAddExpenseExtra() {
