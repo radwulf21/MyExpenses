@@ -12,6 +12,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.myexpenses.databinding.FragmentExpensesBinding
 import com.example.myexpenses.MyExpensesRouter.Companion.launchAddExpense
+import com.example.myexpenses.MyExpensesRouter.Companion.launchEditExpense
 import com.example.myexpenses.R
 import com.example.myexpenses.commons.database.MyExpensesApplication
 import com.example.myexpenses.commons.utils.UtilsMethods.Companion.buildAlertDialog
@@ -52,6 +53,10 @@ class ExpensesFragment : Fragment() {
                             dialog.cancel()
                         }
                     )
+                }
+
+                override fun onClickEditIcon(expenseId: Int, monthId: Int) {
+                    launchEditExpense(activity, expenseId, monthId)
                 }
             })
         }

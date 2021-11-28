@@ -10,8 +10,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MyExpenses">
+
         <activity
-            android:name="com.example.myexpenses.features.expenses.list.view.ExpensesActivity"
+            android:name=".features.expenses.list.view.ExpensesActivity"
             android:screenOrientation="portrait">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -19,8 +20,13 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
-            android:name="com.example.myexpenses.features.expenses.create.view.AddExpenseActivity"
+            android:name=".features.expenses.create.view.AddExpenseActivity"
+            android:screenOrientation="portrait" />
+
+        <activity
+            android:name=".features.expenses.edit.view.EditExpenseActivity"
             android:screenOrientation="portrait" />
     </application>
 </manifest>

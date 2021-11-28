@@ -1,9 +1,6 @@
 package com.example.myexpenses.commons.database
 
-import androidx.room.Dao
-import androidx.room.Delete
-import androidx.room.Insert
-import androidx.room.Query
+import androidx.room.*
 import com.example.myexpenses.features.expenses.list.model.Expense
 
 @Dao
@@ -19,4 +16,7 @@ interface MyExpensesDao {
 
     @Query("SELECT SUM(value) FROM expenses WHERE month_id = :monthId")
     suspend fun getTotalValueOfMonth(monthId: Int): Double
+
+    @Update
+    suspend fun editExpense(expense: Expense)
 }

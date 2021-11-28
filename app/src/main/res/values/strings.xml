@@ -15,4 +15,7 @@
     <string name="dialog_delete_negative_button_text">Cancelar</string>
     <string name="message_delete_successful">Despesa deletada com sucesso!</string>
     <string name="back">Voltar</string>
+    <string name="edit_expense">Editar despeza</string>
+    <string name="edit_expense_title">Editar uma despeza</string>
+    <string name="message_edit_successful">Despesa editada com sucesso!</string>
 </resources>

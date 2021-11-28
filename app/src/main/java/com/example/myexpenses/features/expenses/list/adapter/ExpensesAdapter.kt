@@ -45,6 +45,9 @@ class ExpensesAdapter(
             binding.ivDeleteExpense.setOnClickListener {
                 callback.onClickDeleteIcon(expense)
             }
+            binding.ivEditExpense.setOnClickListener {
+                callback.onClickEditIcon(expense.id, expense.monthId)
+            }
         }
     }
 }
